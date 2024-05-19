@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
@@ -21,6 +22,7 @@ public class MedicalCode {
     private String source;
     private String codeListCode;
     @Column(unique = true, nullable = false)
+    @Size(min = 1, message = "Code must be at least 1 characters long")
     private String code;
     private String displayValue;
     private String longDescription;
