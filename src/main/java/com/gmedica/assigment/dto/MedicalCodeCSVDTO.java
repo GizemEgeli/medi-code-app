@@ -39,4 +39,31 @@ public class MedicalCodeCSVDTO {
 
     @CsvBindByName(column = "sortingPriority")
     private int sortingPriority;
+
+    public void setSource(String source) {
+        this.source = sanitize(source);
+    }
+
+    public void setCodeListCode(String codeListCode) {
+        this.codeListCode = sanitize(codeListCode);
+    }
+
+    public void setCode(String code) {
+        this.code = sanitize(code);
+    }
+
+    public void setDisplayValue(String displayValue) {
+        this.displayValue = sanitize(displayValue);
+    }
+
+    public void setLongDescription(String longDescription) {
+        this.longDescription = sanitize(longDescription);
+    }
+
+    private String sanitize(String input) {
+        if (input != null) {
+            input = input.replaceAll("[^\\p{L}\\p{Nd}\\s,.]", "").trim();
+        }
+        return input;
+    }
 }
